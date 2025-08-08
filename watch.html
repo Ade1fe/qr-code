@@ -9,10 +9,25 @@
 <body>
   <div class="container">
     <h1>Now Playing</h1>
-    <video controls autoplay width="100%" style="max-width: 720px;">
+    <video id="video" controls autoplay playsinline width="100%" style="max-width: 720px;">
       <source src="videos/my-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
+
+  <script>
+    const video = document.getElementById('video');
+
+    video.addEventListener('canplay', () => {
+      video.play();
+
+      // Try to enter fullscreen (optional)
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      }
+    });
+  </script>
 </body>
 </html>
